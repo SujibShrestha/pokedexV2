@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden flex justify-center items-center">
-  {/* 🔹 Blurred Background Layer */}
+  {/*  Blurred Background Layer */}
   <div
     className="absolute inset-0 bg-cover bg-center bg-no-repeat blur-xs -z-10"
     style={{ backgroundImage: "url('./pokebg.jpg')" }}

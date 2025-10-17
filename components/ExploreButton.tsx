@@ -12,7 +12,7 @@ export default function ExploreButton() {
       transition={{ type: "keyframes"}}
     >
       <Link
-        href="/pokedex"
+        href="/home"
       >
        <Button className="bg-red-600 hover:bg-red-400">Explore</Button>
       </Link>

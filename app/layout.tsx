@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import AudioPlayer from "@/components/AudioPlayer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,8 +24,13 @@ export default function RootLayout({
       <body
         className={poppins.className}
       >
+        <ThemeProvider
+          attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange>
         {children}
-      
+      </ThemeProvider>
       </body>
     </html>
   );
