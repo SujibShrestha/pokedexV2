@@ -5,17 +5,17 @@ import PokemonCard from '@/components/PokemonCard';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
-const page = () => {
+const Page = () => {
     const {type} = useParams();
    const [pokemons, setPokemons] = useState([]);
-     const [isLoading, setIsLoading] = useState(false);
-     const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     const fetchTypePokemons = async () => {
       const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
       const data = await res.json();
           const pokemonList = data.pokemon.map((p: any) => p.pokemon);
       setPokemons(pokemonList || []);
+      
     };
     fetchTypePokemons();
   }, [type]);
@@ -32,17 +32,13 @@ const page = () => {
             All Pokémons
           </h2>
 
-          {isLoading ? (
-            <p className="text-center">Loading...</p>
-          ) : errorMessage ? (
-            <p className="text-red-500 text-center">{errorMessage}</p>
-          ) : (
+         
             <ul className="grid sm:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-3">
               {pokemons.map((pokemon, i) => (
                 <PokemonCard key={i} pokemon={pokemon} />
               ))}
             </ul>
-          )}
+
        
         </section>
       </main>
@@ -50,4 +46,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

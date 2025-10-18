@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import React from "react";
 import { getPopularPokemons } from "../actions/supabase";
 
-const page = async () => {
+const Page = async () => {
   const pokemonList = (await getPopularPokemons()) || [];
 
   return (
@@ -41,4 +41,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default Page;
