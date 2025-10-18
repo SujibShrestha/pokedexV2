@@ -10,6 +10,7 @@ import {
 } from "./ui/card";
 import Type, { typeColors } from "./Types";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export interface PokemonDetails {
   id: number;
@@ -58,7 +59,7 @@ const PokemonCard = ({ pokemon }: { pokemon: Pokemon }) => {
         </CardHeader>
 
         <CardContent className="flex justify-center bg-foreground mx-5">
-          <img
+          <Image
             src={details.sprites.other["official-artwork"].front_default}
             alt={pokemon.name}
             className="w-32 h-32 object-contain"

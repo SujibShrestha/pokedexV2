@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import React from "react";
 import { getPopularPokemons } from "../actions/supabase";
+import Image from "next/image";
 
 const Page = async () => {
   const pokemonList = (await getPopularPokemons()) || [];
@@ -32,7 +33,7 @@ const Page = async () => {
               <span className="pokemon-font text-2xl">
                 {pokemon.name.toUpperCase()}
               </span>{" "}
-              <img src={pokemon.image} alt="image" height={50} width={50} />
+              <Image src={pokemon.image} alt="image" height={50} width={50} />
             </div>
           ))}
         </ul>

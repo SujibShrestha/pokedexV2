@@ -37,14 +37,14 @@ const Page = () => {
           },
         ]);
         if (query) {
-  await updateSearch(query, data); // always send the Pokémon object
+  await updateSearch(query); // always send the Pokémon object
 }
       } else {
         // List endpoint
         setPokemonList(data.results || []);
       }
        
-    } catch (err: any) {
+    } catch (err) {
       console.error(err);
       setPokemonList([]);
       setErrorMessage("Pokémon not found.");

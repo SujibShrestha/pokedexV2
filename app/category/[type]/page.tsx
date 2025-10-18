@@ -1,9 +1,17 @@
 "use client"
 
 import Navbar from '@/components/Navbar';
-import PokemonCard from '@/components/PokemonCard';
+import PokemonCard, { Pokemon } from '@/components/PokemonCard';
 import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+
+interface TypePokemon {
+  pokemon: {
+    name: string;
+    url: string;
+  };
+  slot: number;
+}
 
 const Page = () => {
     const {type} = useParams();
@@ -13,7 +21,7 @@ const Page = () => {
     const fetchTypePokemons = async () => {
       const res = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
       const data = await res.json();
-          const pokemonList = data.pokemon.map((p: any) => p.pokemon);
+          const pokemonList = data.pokemon.map((p:TypePokemon) => p.pokemon);
       setPokemons(pokemonList || []);
       
     };

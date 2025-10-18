@@ -6,7 +6,7 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY!
 
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export async function updateSearch(searchTerm:string,pokemon:Pokemon){
+export async function updateSearch(searchTerm:string){
     //checking if pokemon already exists
 try {
 
@@ -46,6 +46,6 @@ export async function getPopularPokemons(){
         const result = await supabase.from("pokemon").select("*").limit(10).order("count",{ascending:false})
         return result.data
     } catch (error) {
-        
+        console.log("error fetching popular ",error)
     }
 }
