@@ -17,7 +17,7 @@ const Type: React.FC<TypeProps> = ({ typeName }) => {
   const bgColor = typeColors[typeName] || "bg-gray-500";
   return (
     <div
-      className={`inline-block px-3 py-1  text-gray-50 rounded-md ${bgColor}`}
+      className={`inline-block px-2 py-1  text-gray-50 rounded-md ${bgColor}`}
     >
       {typeName}
     </div>

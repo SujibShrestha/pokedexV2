@@ -1,24 +1,19 @@
+"use client";
 import { useEffect, useState } from "react";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardAction,
   CardContent,
   CardFooter,
-} from "./ui/card"; // adjust import path
+} from "./ui/card";
 import Type, { typeColors } from "./Types";
-import {motion, scale} from 'framer-motion'
+import { motion } from "framer-motion";
 
-interface Pokemon {
-  name: string;
-  url: string;
-}
-
-interface PokemonDetails {
+export interface PokemonDetails {
   id: number;
-    types: { type: { name: keyof typeof typeColors } }[];
+  types: { type: { name: keyof typeof typeColors } }[];
   sprites: {
     other: {
       "official-artwork": { front_default: string };
@@ -26,47 +21,57 @@ interface PokemonDetails {
   };
 }
 
+export interface Pokemon {
+  name: string;
+  url?: string;
+  details?: PokemonDetails;
+}
+
 const PokemonCard = ({ pokemon }: { pokemon: Pokemon }) => {
-  const [details, setDetails] = useState<PokemonDetails | null>(null);
+  const [details, setDetails] = useState<PokemonDetails | null>(
+    pokemon.details || null
+  );
 
   useEffect(() => {
-    fetch(pokemon.url)
-      .then((res) => res.json())
-      .then((data: PokemonDetails) => {
-        setDetails(data);
-      });
-  }, [pokemon.url]);
+    if (!pokemon.details && pokemon.url) {
+      const fetchDetails = async () => {
+        try {
+          const res = await fetch(pokemon.url!);
+          if (!res.ok) throw new Error("Failed to fetch Pokémon details");
+          const data: PokemonDetails = await res.json();
+          setDetails(data);
+        } catch (err) {
+          console.error("Error fetching Pokémon details:", err);
+        }
+      };
+      fetchDetails();
+    }
+  }, [pokemon.details, pokemon.url]);
 
-  if (!details) return <p>Loading...</p>;
+  if (!details) return <p className="text-center">Loading...</p>;
 
   return (
-    <motion.div whileHover={{scale:1.04}}>
-    <Card className="md:w-60 w-50">
-      <CardHeader>
-        <CardTitle>#{details.id}</CardTitle> {/* ID as title */}
-        <CardDescription>{pokemon.name.toUpperCase()}</CardDescription> 
-      </CardHeader>
+    <motion.div whileHover={{ scale: 1.05 }}>
+      <Card className="w-full sm:w-48 md:w-60 mr-2 mb-4">
+        <CardHeader>
+          <CardTitle>#{details.id}</CardTitle>
+          <CardDescription>{pokemon.name.toUpperCase()}</CardDescription>
+        </CardHeader>
 
-      <CardContent className="flex justify-center bg-foreground mx-5">
-        <img
-          src={details.sprites.other["official-artwork"].front_default}
-          alt={pokemon.name}
-          className="w-32 h-32 object-contain"
-        />
-      </CardContent>
+        <CardContent className="flex justify-center bg-foreground mx-5">
+          <img
+            src={details.sprites.other["official-artwork"].front_default}
+            alt={pokemon.name}
+            className="w-32 h-32 object-contain"
+          />
+        </CardContent>
 
-      <CardFooter>
-        {/* Types as footer */}
-        {details.types.map((t) => (
-          <span
-            key={t.type.name}
-            className={`px-2 py-1 rounded text-sm capitalize mr-1`}
-          >
+        <CardFooter className="flex gap-1">
+          {details.types.map((t) => (
             <Type key={t.type.name} typeName={t.type.name} />
-          </span>
-        ))}
-      </CardFooter>
-    </Card>
+          ))}
+        </CardFooter>
+      </Card>
     </motion.div>
   );
 };
