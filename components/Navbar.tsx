@@ -11,7 +11,7 @@ const Navbar = ({ currentPath = "/dashboard" }: { currentPath: string }) => {
     { name: "Categories", href: "/category", icon: Columns },
   ];
   return (
-    <div className="w-full mx-auto  fixed bg-red-500 text-primary-foreground z-10">
+    <div className="w-full  bg-red-500 text-primary-foreground z-10">
       <div className=" flex justify-between items-center">
         <div className="flex items-center space-x-2  mb-4 p-2 ">
           <Image
@@ -26,7 +26,7 @@ const Navbar = ({ currentPath = "/dashboard" }: { currentPath: string }) => {
             const Icon = item.icon;
             const isActive = currentPath === item.href;
             return (
-              <Link
+              <Link key={key}
                 href={item.href}
                 className={`flex items-center space-x-3 py-2 px-2 rounded-lg ${
                   isActive

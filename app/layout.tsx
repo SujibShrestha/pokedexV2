@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import AudioPlayer from "@/components/AudioPlayer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const poppins = Poppins({
@@ -20,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+ <html lang="en" >
       <body
         className={poppins.className}
       >
