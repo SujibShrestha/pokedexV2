@@ -6,7 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Navbar = ({ currentPath = "/dashboard" }: { currentPath: string }) => {
   const navItems = [
-    { name: "Home", href: "/home", icon: Home },
+    { name: "Home", href: "/", icon: Home },
     { name: "Popular", href: "/popular", icon: Heart },
     { name: "Categories", href: "/category", icon: Columns },
   ];

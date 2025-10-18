@@ -4,6 +4,7 @@ import PokemonCard, { Pokemon } from "@/components/PokemonCard";
 import SearchBar from "@/components/SearchBar";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
+import { updateSearch } from "./actions/supabase";
 
 const Page = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,10 +36,14 @@ const Page = () => {
             details: data,
           },
         ]);
+        if (query) {
+  await updateSearch(query, data); // always send the Pokémon object
+}
       } else {
         // List endpoint
         setPokemonList(data.results || []);
       }
+       
     } catch (err: any) {
       console.error(err);
       setPokemonList([]);
@@ -54,7 +59,7 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      <Navbar currentPath="/home" />
+      <Navbar currentPath="/" />
 
       <main className="max-w-6xl mx-auto px-4 flex flex-col items-center mt-10">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
