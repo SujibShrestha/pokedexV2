@@ -30,8 +30,7 @@ export interface Pokemon {
 const PokemonCard = ({ pokemon }: { pokemon: Pokemon }) => {
   const [details, setDetails] = useState<PokemonDetails | null>(
     pokemon.details || null
-  );
-
+  ); 
   useEffect(() => {
     if (!pokemon.details && pokemon.url) {
       const fetchDetails = async () => {
