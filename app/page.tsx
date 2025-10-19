@@ -74,7 +74,7 @@ const Page = () => {
           ) : errorMessage ? (
             <p className="text-red-500 text-center">{errorMessage}</p>
           ) : (
-            <ul className="grid md:grid-cols-4 grid-cols-2 gap-3">
+            <ul className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 md:px-5 gap-3">
               {pokemonList.map((pokemon, i) => (
                 <PokemonCard key={i} pokemon={pokemon} />
               ))}

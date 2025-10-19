@@ -63,10 +63,12 @@ const PokemonCard = ({ pokemon }: { pokemon: Pokemon }) => {
             src={details.sprites.other["official-artwork"].front_default}
             alt={pokemon.name}
             className="w-32 h-32 object-contain"
+            width={50}
+            height={50}
           />
         </CardContent>
 
-        <CardFooter className="flex gap-1">
+        <CardFooter className="flex gap-1 px-2 ">
           {details.types.map((t) => (
             <Type key={t.type.name} typeName={t.type.name} />
           ))}

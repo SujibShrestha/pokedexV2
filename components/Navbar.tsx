@@ -13,7 +13,7 @@ const Navbar = ({ currentPath = "/dashboard" }: { currentPath: string }) => {
   return (
     <div className="w-full  bg-red-500 text-primary-foreground z-10">
       <div className=" flex justify-between items-center">
-        <div className="flex items-center space-x-2  mb-4 p-2 ">
+        <div className=" sm:block  hidden items-center space-x-2  mb-4 p-2 ">
           <Image
             src={"/pokelogo.png"}
             alt="Logo"
