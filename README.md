@@ -1,5 +1,7 @@
 # PokedexV2  
 
+<img src="./sc/homepage.png" alt="Homepage" width="700"/>
+
 A modern, responsive Pokémon‑browser built with Next.js, TypeScript & Tailwind CSS.  
 Explore Pokémon data (powered by the PokéAPI), view details, and navigate a slick UI.
 
